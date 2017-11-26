@@ -1,6 +1,10 @@
 /* eslint-env node */
 'use strict';
+const EngineAddon = require('ember-engines/lib/engine-addon');
 
-module.exports = {
-  name: 'react-engine'
-};
+module.exports = EngineAddon.extend({
+  name: 'react-engine',
+  lazyLoading: {
+    enabled: true
+  }
+});
