@@ -1,3 +1,10 @@
-<h1>Welcome to ember react integration engine.</h1>
+{{app-header}}
 
-{{outlet}}
+
+<div class="container">
+  <div class="has-text-centered">
+    {{app-tabs menus=menus}}
+  </div>
+  
+  {{outlet}}
+</div>

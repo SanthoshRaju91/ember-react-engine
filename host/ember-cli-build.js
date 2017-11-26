@@ -4,9 +4,17 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
+  let app = new EmberApp(
+    defaults,
+    {
+      // Add options here
+    }
+  );
+
+  app.import('node_modules/bulma/css/bulma.css');
+  app.import(
+    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+  );
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

@@ -1,0 +1,12 @@
+<div class="tabs is-toggle">
+  <ul>
+    {{#each menus as |menu|}}
+      <li>
+        {{#link-to menu.route}}
+          <span class="icon is-small"><i class="fa {{menu.icon}}"></i></span>
+          <span>{{ menu.name}}</span>
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

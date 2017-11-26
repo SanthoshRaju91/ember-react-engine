@@ -1,0 +1,19 @@
+.header {
+  height: 100px;
+  background: #52b3d9;
+  background: -webkit-linear-gradient(right, #52b3d9, #19b5fe);
+  background: -o-linear-gradient(right, #52b3d9, #19b5fe);
+  background: -moz-linear-gradient(right, #52b3d9, #19b5fe);
+  background: linear-gradient(right, #52b3d9, #19b5fe);
+
+  .level {
+    padding-top: 35px;
+
+    h2 {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: white;
+    }
+  }
+}
