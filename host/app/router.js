@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.mount('react-engine', { as: 'react', path: 'react' });
 });
 
 export default Router;
