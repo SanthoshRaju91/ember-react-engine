@@ -1,0 +1,16 @@
+{
+  "name": "bin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "merger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Santhosh Raju <santhoshraju.ai@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "del": "^3.0.0",
+    "glob": "^7.1.2",
+    "merge-json": "0.1.0-b.3"
+  }
+}
