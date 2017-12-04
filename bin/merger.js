@@ -1,41 +1,51 @@
-const merger = require('merge-json');
-const fs = require('fs');
-const glob = require('glob');
-const del = require('del');
+import merger from 'merge-json';
+import fs from 'fs';
+import del from 'del';
 
 const apps = {
   host: '../host',
   addons: '../addons/'
 };
 
+/**
+* Function to get the list of directories from the specified path
+* @method getDirectories
+* @param path - path to look for.
+*/
 function getDirectories(path) {
-  return fs.readdirSync(path).filter(function(file) {
-    return fs.statSync(path + '/' + file).isDirectory();
-  });
+  return fs
+    .readdirSync(path)
+    .filter(file => fs.statSync(path + '/' + file).isDirectory());
 }
 
-// const addons = glob.sync('**/package.json', { cwd: apps.addons });
-//
-// const addonsRequire = addons.map(current => {
-//   return require('../addons/' + current);
-// });
+const addons = getDirectories(apps.addons);
 
-// const dependencies = merger.merge(hostJSON.dependencies, addon1.dependencies);
-//
-// const devDependencies = merger.merge(
-//   hostJSON.devDependencies,
-//   addon1.devDependencies
-// );
-//
-// const consolidatedPackage = {
-//   name: 'packages',
-//   version: '1.0.0'
-// };
-//
-// consolidatedPackage['dependencies'] = dependencies;
-// consolidatedPackage['devDependencies'] = devDependencies;
-//
-// fs.writeFileSync(
-//   '../packages/package.json',
-//   JSON.stringify(consolidatedPackage)
-// );
+let addonsRequire = addons.map(current => {
+  return require(`${apps.addons}${current}/package.json`);
+});
+
+addonsRequire.push(require(`${apps.host}/package.json`));
+
+let dependencies = {};
+
+addonsRequire.forEach(current => {
+  dependencies = merger.merge(dependencies, current.dependencies);
+});
+
+let devDependencies = {};
+
+addonsRequire.forEach(current => {
+  devDependencies = merger.merge(devDependencies, current.devDependencies);
+});
+
+const consolidatedPackage = {
+  name: 'packages',
+  version: '1.0.0',
+  dependencies,
+  devDependencies
+};
+
+fs.writeFileSync(
+  '../packages/package.json',
+  JSON.stringify(consolidatedPackage, null, 4)
+);
